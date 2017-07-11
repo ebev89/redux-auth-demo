@@ -1,10 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Panel } from 'react-bootstrap';
 
 class ExampleWell extends React.Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired
-  }
 
   render() {
     return (
@@ -17,6 +15,10 @@ class ExampleWell extends React.Component {
     );
   }
 }
+
+ExampleWell.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default ExampleWell;
 

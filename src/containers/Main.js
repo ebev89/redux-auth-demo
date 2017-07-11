@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import IndexPanel from '../components/IndexPanel';
 import CodeSnippet from '../components/CodeSnippet';
 import ExampleWell from '../components/ExampleWell';
@@ -11,20 +11,13 @@ import * as BSTheme from 'redux-auth/bootstrap-theme';
 import * as DefaultTheme from 'redux-auth/default-theme';
 import * as MUITheme from 'redux-auth/material-ui-theme';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 if (!global.__SERVER__ && !global.__TEST__) {
   require('../styles/main.scss');
 }
 
 class Main extends React.Component {
-  static propTypes = {
-    dispatch: PropTypes.func,
-    pageEndpoint: PropTypes.string,
-    theme: PropTypes.string,
-    currentUserUid: PropTypes.string,
-    currentUserProvider: PropTypes.string,
-    currentUserEndpoint: PropTypes.string,
-  };
 
   updateTheme({ value }) {
     this.props.dispatch(updateDemoTheme(value));
@@ -57,7 +50,7 @@ class Main extends React.Component {
     }
 
     const deployTooltip = (
-      <Tooltip>
+      <Tooltip id="deployTooltip">
         Create a new instance of this demo on your own Heroku server.
       </Tooltip>
     );
@@ -293,6 +286,15 @@ class Main extends React.Component {
     );
   }
 }
+
+Main.propTypes = {
+  dispatch: PropTypes.func,
+  pageEndpoint: PropTypes.string,
+  theme: PropTypes.string,
+  currentUserUid: PropTypes.string,
+  currentUserProvider: PropTypes.string,
+  currentUserEndpoint: PropTypes.string,
+};
 
 export default connect(({ auth, demoUi }) => ({
   currentUserUid: auth.getIn(['user', 'attributes', 'provider']) || 'none',

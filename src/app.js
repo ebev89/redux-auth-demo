@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import {
   Router,
@@ -18,12 +19,10 @@ import Account from './containers/Account';
 import SignIn from './containers/SignIn';
 import Container from './components/Container';
 import GlobalComponents from './components/GlobalComponents';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 class App extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-  };
-
   render() {
     return (
       <Container>
@@ -33,6 +32,10 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.node,
+};
 
 function requireAuth(store, nextState, replace, next) {
   if (!store.getState().auth.getIn(['user', 'isSignedIn'])) {

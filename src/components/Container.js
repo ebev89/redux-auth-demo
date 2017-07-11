@@ -1,11 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Navbar, NavItem, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Container extends React.Component {
-  static propTypes = {
-    children: PropTypes.node
-  }
 
   render() {
     return (
@@ -40,5 +38,9 @@ class Container extends React.Component {
     );
   }
 }
+
+Container.propTypes = {
+  children: PropTypes.node
+};
 
 export default Container;

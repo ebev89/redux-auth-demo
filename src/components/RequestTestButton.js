@@ -1,22 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Glyphicon } from 'react-bootstrap';
 import { ButtonLoader } from 'redux-auth/bootstrap-theme';
 import { connect } from 'react-redux';
 import { requestTest } from '../actions/request-test-buttons';
 
 class RequestTestButton extends React.Component {
-  static propTypes = {
-    path: PropTypes.string.isRequired,
-    currentEndpointKey: PropTypes.string,
-    endpointKey: PropTypes.string.isRequired,
-    dispatch: PropTypes.func,
-    demoButtons: PropTypes.any,
-    signedIn: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    endpointKey: 'default'
-  };
 
   handleClick() {
     const url = `${window.__API_URL__}${this.props.path}`;
@@ -54,6 +43,19 @@ class RequestTestButton extends React.Component {
     );
   }
 }
+
+RequestTestButton.propTypes = {
+  path: PropTypes.string.isRequired,
+  currentEndpointKey: PropTypes.string,
+  endpointKey: PropTypes.string.isRequired,
+  dispatch: PropTypes.func,
+  demoButtons: PropTypes.any,
+  signedIn: PropTypes.bool,
+};
+
+RequestTestButton.defaultProps = {
+  endpointKey: 'default'
+};
 
 export default connect(({ auth, demoButtons }) => ({
   signedIn: auth.getIn(['user', 'isSignedIn']),

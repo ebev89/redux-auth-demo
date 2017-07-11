@@ -1,18 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { dismissRequestTestErrorModal } from '../actions/request-test-buttons';
 
 class RequestTestErrorModal extends React.Component {
-  static propTypes = {
-    show: PropTypes.bool,
-    url: PropTypes.string,
-    dispatch: PropTypes.func,
-  }
-
-  static defaultProps = {
-    show: false
-  }
 
   close() {
     this.props.dispatch(dismissRequestTestErrorModal());
@@ -43,6 +35,16 @@ class RequestTestErrorModal extends React.Component {
     );
   }
 }
+
+RequestTestErrorModal.propTypes = {
+  show: PropTypes.bool,
+  url: PropTypes.string,
+  dispatch: PropTypes.func,
+};
+
+RequestTestErrorModal.defaultProps = {
+  show: false
+};
 
 export default connect(({ demoButtons }) => ({
   show: demoButtons.get('showErrorModal'),

@@ -1,18 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { dismissRequestTestSuccessModal } from '../actions/request-test-buttons';
 
 class RequestTestSuccessModal extends React.Component {
-  static propTypes = {
-    show: PropTypes.bool,
-    url: PropTypes.string,
-    dispatch: PropTypes.func,
-  };
-
-  static defaultProps = {
-    show: false
-  };
 
   close() {
     this.props.dispatch(dismissRequestTestSuccessModal());
@@ -43,6 +35,16 @@ class RequestTestSuccessModal extends React.Component {
     );
   }
 }
+
+RequestTestSuccessModal.propTypes = {
+  show: PropTypes.bool,
+  url: PropTypes.string,
+  dispatch: PropTypes.func,
+};
+
+RequestTestSuccessModal.defaultProps = {
+  show: false
+};
 
 export default connect(({ demoButtons }) => ({
   show: demoButtons.get('showSuccessModal'),

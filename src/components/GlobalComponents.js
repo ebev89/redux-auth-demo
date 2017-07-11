@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import RequestTestSuccessModal from './RequestTestSuccessModal';
 import RequestTestErrorModal from './RequestTestErrorModal';
 import * as BSTheme from 'redux-auth/bootstrap-theme';
@@ -7,9 +8,6 @@ import * as MUITheme from 'redux-auth/material-ui-theme';
 import { connect } from 'react-redux';
 
 class GlobalComponents extends React.Component {
-  static propTypes = {
-    theme: PropTypes.string,
-  };
 
   render() {
     let Theme;
@@ -35,6 +33,10 @@ class GlobalComponents extends React.Component {
     );
   }
 }
+
+GlobalComponents.propTypes = {
+  theme: PropTypes.string,
+};
 
 export default connect(({ demoUi }) => ({
   theme: demoUi.get('theme'),

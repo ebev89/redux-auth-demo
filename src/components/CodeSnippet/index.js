@@ -1,16 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
 import hljs from 'highlight.js';
 
 class CodeSnippet extends React.Component {
-  static propTypes = {
-    language: PropTypes.string,
-    children: PropTypes.node.isRequired
-  }
-
-  static defaultProps = {
-    language: 'javascript'
-  }
 
   state = {
     code: <span />
@@ -49,5 +42,14 @@ class CodeSnippet extends React.Component {
     );
   }
 }
+
+CodeSnippet.propTypes = {
+  language: PropTypes.string,
+  children: PropTypes.node.isRequired
+};
+
+CodeSnippet.defaultProps = {
+  language: 'javascript'
+};
 
 export default CodeSnippet;
